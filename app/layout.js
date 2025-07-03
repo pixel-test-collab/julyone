@@ -2,17 +2,14 @@
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import Script from "next/script"
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 })
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 })
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -29,12 +26,12 @@ export default function RootLayout({ children }) {
         {`
           (function() {
             // Configuration
-           // const domainKey = '684a741aca1fc468ea05ecfb';
+          
+//  const domainKey = '6866742957103689c9d60fa6';
 
-              const domainKey = '686671c757103689c9d60f6e';
-           
+ const domainKey = '686671c757103689c9d60f6e'
+  
             const proApiUrl = 'https://proapi.qa.experience.com';
-            
             // Utility functions
             const getSessionCookie = name => {
               const matches = document.cookie.match(
@@ -42,7 +39,6 @@ export default function RootLayout({ children }) {
               );
               return matches ? decodeURIComponent(matches[1]) : "";
             };
-            
             const generateSessionId = () => {
               const randomString =
                 Math.random().toString(36).substring(2, 15) +
@@ -50,7 +46,6 @@ export default function RootLayout({ children }) {
               const timestamp = Date.now().toString(36);
               return randomString + timestamp;
             };
-            
             const getSessionId = () => {
               let sessionId = getSessionCookie("ExpSessionId");
               if (!sessionId) {
@@ -59,7 +54,6 @@ export default function RootLayout({ children }) {
               }
               return sessionId;
             };
-            
             const fetchPixel = async () => {
               try {
                 const params = new URLSearchParams({
@@ -70,15 +64,12 @@ export default function RootLayout({ children }) {
                   userSessionId: getSessionId(),
                   cookieConsent: true,
                 });
-                
                 const response = await fetch(
                   \`\${proApiUrl}/api/pixel/v1/domain/pixel?\${params.toString()}\`
                 );
-                
                 if (!response.ok) {
                   throw new Error(\`HTTP error! status: \${response.status}\`);
                 }
-                
                 const data = await response.json();
                 if (data.url) {
                   return data.url;
@@ -91,12 +82,10 @@ export default function RootLayout({ children }) {
                 return null;
               }
             };
-            
             const attachPixel = pixelUrl => {
               if (window.ExpDataCollector && typeof window.ExpDataCollector === "object") {
                 delete window.ExpDataCollector;
               }
-              
               const script = document.createElement("script");
               script.src = pixelUrl;
               script.async = true;
@@ -104,14 +93,12 @@ export default function RootLayout({ children }) {
               script.onerror = () => console.error("Failed to load ExpDataCollector");
               document.body.appendChild(script);
             };
-            
             const loadPixel = async () => {
               const pixelUrl = await fetchPixel();
               if (pixelUrl) {
                 attachPixel(pixelUrl);
               }
             };
-            
             // Initialize pixel loading
             if (document.readyState === "loading") {
               document.addEventListener("DOMContentLoaded", loadPixel);
@@ -129,3 +116,12 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
+
+
+
+
+
+
+
+
+
