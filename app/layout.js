@@ -29,7 +29,10 @@ export default function RootLayout({ children }) {
         {`
           (function() {
             // Configuration
-            const domainKey = '684a741aca1fc468ea05ecfb';
+           // const domainKey = '684a741aca1fc468ea05ecfb';
+
+              const domainKey = '686671c757103689c9d60f6e';
+           
             const proApiUrl = 'https://proapi.qa.experience.com';
             
             // Utility functions
